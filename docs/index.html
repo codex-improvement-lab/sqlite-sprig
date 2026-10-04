@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SQLite Sprig — one record, with its context</title>
+  <meta name="description" content="Extract a SQLite branch with its ordinary schema and required parents. Explore a real, authored example.">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="data/demo-data.js"></script>
+  <script defer src="demo.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the example</a>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="SQLite Sprig home"><svg viewBox="0 0 36 40" aria-hidden="true"><path d="M18 36V9M18 24C7 24 5 17 5 10c8 0 13 5 13 14ZM18 16C18 7 24 3 31 3c0 8-5 13-13 13Z"/></svg><span>SQLite <b>Sprig</b></span></a>
+    <nav aria-label="Main"><a href="#how">How it works</a><a href="https://github.com/codex-improvement-lab/sqlite-sprig">GitHub <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="stage" aria-labelledby="headline">
+      <div class="intro">
+        <p class="eyebrow"><span class="small-dot"></span> A small tool for local SQLite</p>
+        <h1 id="headline">One record.<br>With its<br><em>context.</em></h1>
+        <p class="lead">Take the branch you need. Keep its relationships, schema, and the ability to work with it.</p>
+        <div class="picker">
+          <label for="card">Start with a card</label>
+          <select id="card"><option value="103">#103 · Checkout review</option><option value="101">#101 · Search filters</option><option value="102">#102 · Earlier release</option></select>
+        </div>
+        <a class="download" id="download" href="data/card-103.sqlite3" download>Download this SQLite file <span aria-hidden="true">↓</span></a>
+        <p class="fine">Real output from authored sample data. <a href="data/board.sqlite3" download>Get the source</a></p>
+      </div>
+      <div class="specimen">
+        <div class="specimen-top"><span>THE SELECTED BRANCH</span><span class="alpha">ALPHA 0.1</span></div>
+        <svg id="branch" viewBox="0 0 640 480" role="img" aria-labelledby="branch-title branch-desc">
+          <title id="branch-title">Card 103 and its required context</title>
+          <desc id="branch-desc">One card and its comments and label assignments, with necessary parent records. Counts come from the generated SQLite output.</desc>
+          <defs><linearGradient id="paper" x2=".9" y2="1"><stop stop-color="#fbebd8"/><stop offset="1" stop-color="#f0c6a8"/></linearGradient><filter id="shadow" x="-40%" y="-40%" width="180%" height="200%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#7e674f" flood-opacity=".12"/></filter></defs>
+          <text class="column-label" x="35" y="33">PARENTS KEPT</text><text class="column-label" x="256" y="33">ROOT</text><text class="column-label" x="468" y="33">CHILDREN KEPT</text>
+          <g class="traces" fill="none"><path d="M181 102H210Q228 102 228 123V226H255"/><path d="M181 190H228"/><path d="M181 278H210Q228 278 228 256V226"/><path d="M407 226H440Q456 226 456 208V179H466"/><path d="M407 226H440Q456 226 456 244V312H466"/><path d="M181 366H429Q456 366 456 339V312"/></g>
+          <g class="node parent" transform="translate(34,66)"><rect width="148" height="72" rx="8"/><text class="node-label" x="17" y="26">SPACE</text><text class="node-value" id="space-name" x="17" y="51">Studio</text><text class="node-count" id="spaces-count" x="130" y="27">1</text></g>
+          <g class="node parent" transform="translate(34,154)"><rect width="148" height="72" rx="8"/><text class="node-label" x="17" y="26">BOARD</text><text class="node-value" id="board-name" x="17" y="51">Build</text><text class="node-count" id="boards-count" x="130" y="27">1</text></g>
+          <g class="node parent" transform="translate(34,242)"><rect width="148" height="72" rx="8"/><text class="node-label" x="17" y="26">PEOPLE</text><text class="node-value" id="people-names" x="17" y="51">Mara · Jules</text><text class="node-count" id="users-count" x="130" y="27">2</text></g>
+          <g class="node parent" transform="translate(34,330)"><rect width="148" height="72" rx="8"/><text class="node-label" x="17" y="26">LABELS</text><text class="node-value" id="label-names" x="17" y="51">bug · ui</text><text class="node-count" id="labels-count" x="130" y="27">2</text></g>
+          <g class="node root" transform="translate(255,166)" filter="url(#shadow)"><rect width="152" height="120" rx="10"/><path class="fold" d="M386 166"/><text class="root-label" x="20" y="29">SELECTED CARD</text><text class="root-id" id="root-id" x="20" y="70">#103</text><text class="root-state" x="20" y="98">open · 2 comments</text></g>
+          <g class="node child" transform="translate(466,139)"><rect width="146" height="80" rx="8"/><text class="node-label" x="17" y="27">COMMENTS</text><text class="child-count" id="comments-count" x="17" y="58">2</text><text class="child-detail" x="43" y="58">retained</text></g>
+          <g class="node child" transform="translate(466,272)"><rect width="146" height="80" rx="8"/><text class="node-label" x="17" y="27">ASSIGNMENTS</text><text class="child-count" id="card_labels-count" x="17" y="58">2</text><text class="child-detail" x="43" y="58">retained</text></g>
+          <text class="diagram-note" x="34" y="452">The parents added here don't bring their other children.</text>
+        </svg>
+        <div class="mobile-branch" aria-label="Records retained in this branch">
+          <p class="mobile-caption">PARENTS KEPT</p>
+          <div class="mobile-parents"><div><span>Space <b id="m-spaces-count">1</b></span><strong id="m-space-name">Studio</strong></div><div><span>Board <b id="m-boards-count">1</b></span><strong id="m-board-name">Build</strong></div><div><span>People <b id="m-users-count">2</b></span><strong id="m-people-names">Mara · Jules</strong></div><div><span>Labels <b id="m-labels-count">2</b></span><strong id="m-label-names">bug · ui</strong></div></div>
+          <div class="mobile-root"><span>SELECTED CARD</span><strong id="m-root-id">#103</strong><small>open · 2 comments</small></div>
+          <p class="mobile-caption">CHILDREN KEPT</p>
+          <div class="mobile-children"><div><span>Comments</span><strong id="m-comments-count">2</strong></div><div><span>Assignments</span><strong id="m-card_labels-count">2</strong></div></div>
+        </div>
+        <div class="result-strip" aria-live="polite" aria-atomic="true"><div><strong id="kept">11</strong><span>rows kept</span></div><span class="out-of">from 24 source rows</span><span class="excluded"><i aria-hidden="true"></i><span id="omitted">13</span> stay out</span></div>
+      </div>
+    </section>
+    <section class="command" aria-labelledby="command-label"><div class="command-top"><h2 id="command-label">One local operation</h2><span>Python standard library · JSON output</span></div><div class="command-line"><code id="command-text">python sqlite_sprig.py board.sqlite3 --root cards --where "id=103" --out card-103.sqlite3</code><button id="copy" type="button">Copy command</button></div><p id="copy-status" class="copy-status" aria-live="polite"></p></section>
+    <section class="explanation" id="how" aria-labelledby="how-title"><div><p class="eyebrow">SMALLER SCOPE. STILL SQLITE.</p><h2 id="how-title">Keep what makes<br>the case usable.</h2></div><ol><li><b>Choose the root.</b><span>A table and a SQL condition identify your starting rows.</span></li><li><b>Follow the branch.</b><span>Keep children, then add their required parents. Shared parents don't pull in sibling branches.</span></li><li><b>Open the result.</b><span>Tables, indexes, views, triggers and defaults stay in the file. Check the behavior your case needs.</span></li></ol></section>
+    <details class="scope"><summary>What to know before using real data</summary><p>SQLite Sprig copies actual data. It does not mask or anonymize it. The alpha supports ordinary SQLite tables with declared foreign keys; virtual tables and custom extensions are outside its scope. Source access is read-only and an existing output is never replaced. This page shows precomputed, downloadable results from authored data; the extraction runs through the CLI.</p><p><a href="https://github.com/codex-improvement-lab/sqlite-sprig#current-boundaries">Read the full boundaries and usage →</a></p></details>
+  </main>
+  <footer><span>Codex Improvement Lab</span><span>SQLite Sprig · MIT · <a href="https://github.com/codex-improvement-lab/sqlite-sprig/releases">Get the alpha ↗</a></span></footer>
+</body>
+</html>

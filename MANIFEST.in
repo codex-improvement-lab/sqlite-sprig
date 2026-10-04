@@ -1,0 +1,5 @@
+include LICENSE CHANGELOG.md AGENTS.md
+recursive-include examples *.sql
+recursive-include scripts *.py
+recursive-include tests *.py
+recursive-include docs *.md *.html *.css *.js *.json *.svg *.png *.sqlite3

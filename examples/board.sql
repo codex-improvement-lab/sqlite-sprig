@@ -1,0 +1,21 @@
+-- Authored example. No user or production data.
+PRAGMA foreign_keys=ON;
+PRAGMA user_version=7;
+CREATE TABLE spaces(id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+CREATE TABLE users(id INTEGER PRIMARY KEY, space_id INTEGER REFERENCES spaces(id), name TEXT NOT NULL);
+CREATE TABLE boards(id INTEGER PRIMARY KEY, space_id INTEGER REFERENCES spaces(id), name TEXT NOT NULL);
+CREATE TABLE cards(id INTEGER PRIMARY KEY, board_id INTEGER REFERENCES boards(id), creator_id INTEGER REFERENCES users(id), title TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'open', comment_count INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE comments(id INTEGER PRIMARY KEY, card_id INTEGER REFERENCES cards(id), author_id INTEGER REFERENCES users(id), body TEXT NOT NULL);
+CREATE TABLE labels(id INTEGER PRIMARY KEY, space_id INTEGER REFERENCES spaces(id), name TEXT NOT NULL);
+CREATE TABLE card_labels(card_id INTEGER REFERENCES cards(id), label_id INTEGER REFERENCES labels(id), PRIMARY KEY(card_id,label_id)) WITHOUT ROWID;
+INSERT INTO spaces VALUES(1,'Studio'),(2,'Archive');
+INSERT INTO users VALUES(1,1,'Mara'),(2,1,'Jules'),(3,1,'Ivo'),(4,2,'Sol');
+INSERT INTO boards VALUES(10,1,'Build'),(20,2,'Archive');
+INSERT INTO cards(id,board_id,creator_id,title) VALUES(101,10,3,'Search filters'),(102,20,4,'Earlier release'),(103,10,1,'Checkout review');
+INSERT INTO comments VALUES(201,101,3,'Check empty results'),(202,102,4,'First review'),(203,103,1,'Check tab order'),(204,103,2,'Confirm mobile layout'),(205,101,2,'Shared reviewer'),(206,102,4,'Release note');
+INSERT INTO labels VALUES(100,1,'bug'),(101,1,'ui'),(102,2,'archive');
+INSERT INTO card_labels VALUES(103,100),(103,101),(101,100),(102,102);
+UPDATE cards SET comment_count=(SELECT count(*) FROM comments WHERE card_id=cards.id);
+CREATE INDEX cards_status_idx ON cards(status);
+CREATE VIEW card_summary AS SELECT c.id,c.title,c.status,c.comment_count,count(m.id) AS actual_comments FROM cards c LEFT JOIN comments m ON m.card_id=c.id GROUP BY c.id;
+CREATE TRIGGER comments_touch AFTER INSERT ON comments BEGIN UPDATE cards SET comment_count=comment_count+1,status='review' WHERE id=NEW.card_id; END;
