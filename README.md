@@ -8,7 +8,7 @@ An agent investigating one card, order or job often needs a usable database for 
 
 **Alpha · Python 3.11+ · SQLite 3.37+ · no third-party runtime dependencies.**
 
-[Explore the interactive example](https://codex-improvement-lab.github.io/sqlite-sprig/) · [Download the alpha](https://github.com/codex-improvement-lab/sqlite-sprig/releases)
+[Download the alpha and interactive example](https://github.com/codex-improvement-lab/sqlite-sprig/releases)
 
 ## First useful result
 
@@ -29,7 +29,7 @@ python sqlite_sprig.py docs/data/board.sqlite3 --root cards --where "id=103" --o
 
 The example retains **11 of 24 rows**: one card, its two comments and two label assignments, plus the board, space, two people and two labels those records reference. Card 101 shares a reviewer and a label with card 103; it stays out of this result. The row count is not a file-size or speed claim.
 
-Open `docs/index.html` to explore all three precomputed examples and download the actual SQLite files. The page uses authored data and makes no network requests; it illustrates the CLI's results rather than processing an uploaded database.
+Open `docs/index.html`, or unzip the `sqlite-sprig-demo.zip` release asset and open its `index.html`, to explore all three precomputed examples and download the actual SQLite files. The page uses authored data and makes no runtime network requests; it illustrates the CLI's results rather than processing an uploaded database. Links to GitHub navigate there when you choose them.
 
 ## Selection rules
 
